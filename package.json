@@ -1,0 +1,36 @@
+{
+  "name": "maximesignoret_sdk",
+  "version": "0.1.0",
+  "description": "maximesignoret SDK",
+  "license": "MIT",
+  "repository": "TataneInYourFace/maximesignoret_sdk",
+  "author": {
+    "name": "Maxime Signoret",
+    "email": "maxime.signoret@gmail.com",
+    "url": "maximesignoret.fr"
+  },
+  "maintainers": [
+    {
+      "name": "Maxime Signoret",
+      "email": "maxime.signoret@gmail.com",
+      "url": "github.com/TataneInYourFace"
+    }
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "files": [
+    "index.js",
+    "init.js",
+    "cleanup.js",
+    "run-node.sh",
+    "lib"
+  ],
+  "keywords": [
+    "sdk",
+    "maximesignoret"
+  ],
+  "dependencies": {
+    "jwt-decode": "^2.2.0"
+  }
+}
