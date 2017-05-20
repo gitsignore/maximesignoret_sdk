@@ -20,11 +20,7 @@
     "node": ">=6"
   },
   "files": [
-    "index.js",
-    "init.js",
-    "cleanup.js",
-    "run-node.sh",
-    "lib"
+    "index.js"
   ],
   "keywords": [
     "sdk",
