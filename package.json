@@ -20,7 +20,8 @@
     "node": ">=6"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "lib/"
   ],
   "keywords": [
     "sdk",
