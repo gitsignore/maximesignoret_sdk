@@ -3,6 +3,7 @@
 import Client from './lib/Client';
 import AuthenticationManager from './lib/AuthenticationManager';
 import EducationManager from './lib/EducationManager';
+import ExperienceManager from './lib/ExperienceManager';
 import HeaderManager from './lib/HeaderManager';
 import ImageManager from './lib/ImageManager';
 import ProfileManager from './lib/ProfileManager';
@@ -12,6 +13,7 @@ export {
     Client,
     AuthenticationManager,
     EducationManager,
+    ExperienceManager,
     HeaderManager,
     ImageManager,
     ProfileManager,
