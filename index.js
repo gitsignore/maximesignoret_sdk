@@ -6,6 +6,7 @@ import EducationManager from './lib/EducationManager';
 import ExperienceManager from './lib/ExperienceManager';
 import HeaderManager from './lib/HeaderManager';
 import ImageManager from './lib/ImageManager';
+import PortfolioManager from './lib/PortfolioManager';
 import ProfileManager from './lib/ProfileManager';
 import SessionManager from './lib/SessionManager';
 
@@ -16,6 +17,7 @@ export {
     ExperienceManager,
     HeaderManager,
     ImageManager,
+    PortfolioManager,
     ProfileManager,
     SessionManager
 };
