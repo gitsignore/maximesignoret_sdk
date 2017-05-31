@@ -9,6 +9,7 @@ import ImageManager from './lib/ImageManager';
 import PortfolioManager from './lib/PortfolioManager';
 import ProfileManager from './lib/ProfileManager';
 import SessionManager from './lib/SessionManager';
+import SkillManager from './lib/SkillManager';
 
 export {
     Client,
@@ -19,5 +20,6 @@ export {
     ImageManager,
     PortfolioManager,
     ProfileManager,
-    SessionManager
+    SessionManager,
+    SkillManager
 };
