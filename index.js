@@ -10,6 +10,7 @@ import PortfolioManager from './lib/PortfolioManager';
 import ProfileManager from './lib/ProfileManager';
 import SessionManager from './lib/SessionManager';
 import SkillManager from './lib/SkillManager';
+import SkillCategoryManager from './lib/SkillCategoryManager';
 
 export {
     Client,
@@ -21,5 +22,6 @@ export {
     PortfolioManager,
     ProfileManager,
     SessionManager,
-    SkillManager
+    SkillManager,
+    SkillCategoryManager
 };
