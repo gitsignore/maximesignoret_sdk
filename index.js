@@ -1,5 +1,3 @@
-'use strict';
-
 import Client from './lib/Client';
 import AuthenticationManager from './lib/AuthenticationManager';
 import EducationManager from './lib/EducationManager';
