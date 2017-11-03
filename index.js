@@ -11,6 +11,7 @@ import ProfileManager from './lib/ProfileManager';
 import SessionManager from './lib/SessionManager';
 import SkillManager from './lib/SkillManager';
 import SkillCategoryManager from './lib/SkillCategoryManager';
+import ResumeManager from './lib/ResumeManager';
 
 export {
     Client,
@@ -23,5 +24,6 @@ export {
     ProfileManager,
     SessionManager,
     SkillManager,
-    SkillCategoryManager
+    SkillCategoryManager,
+    ResumeManager
 };
