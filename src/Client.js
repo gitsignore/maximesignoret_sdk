@@ -1,3 +1,5 @@
+import "babel-polyfill";
+
 export default class Client {
     constructor({ url, port, entrypoint, staticFiles }) {
         this.url = url;
@@ -6,7 +8,7 @@ export default class Client {
         this.staticFiles = staticFiles;
     }
 
-    async request({path, method = 'GET', body, queryParams = null}, userToken = null, contentType = 'application/json') {
+    async request({ path, method = 'GET', body, queryParams = null }, userToken = null, contentType = 'application/json') {
         let url = `${this.url}:${this.port}${this.entrypoint}${path}`;
         const headers = {
             Authorization: userToken,
