@@ -1,14 +1,4 @@
-'use strict';
+import request from './Client';
 
-export default class ResumeManager {
-    constructor({ client }) {
-        this.client = client;
-    }
-
-    getResume() {
-        return this.client.request({
-            path: '/resume',
-            method: 'GET',
-        });
-    };
-}
+export default async (params = {}) =>
+  await request({ path: '/resume', method: 'GET', ...params });

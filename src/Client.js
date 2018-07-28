@@ -1,43 +1,44 @@
-import "babel-polyfill";
+import 'babel-polyfill';
 
-export default class Client {
-    constructor({ url, port, entrypoint, staticFiles }) {
-        this.url = url;
-        this.port = port;
-        this.entrypoint = entrypoint;
-        this.staticFiles = staticFiles;
-    }
+const queryParams = params =>
+  `?${Object.keys(params)
+    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
+    .join('&')}`;
 
-    async request({ path, method = 'GET', body, queryParams = null }, userToken = null, contentType = 'application/json') {
-        let url = `${this.url}:${this.port}${this.entrypoint}${path}`;
-        const headers = {
-            Authorization: userToken,
-        };
+export default async ({
+  url,
+  port,
+  entrypoint,
+  path,
+  method = 'GET',
+  body,
+  queryParams = null,
+  userToken = null,
+  contentType = 'application/json'
+}) => {
+  let fullUrl = `${url}:${port}${entrypoint}${path}`;
+  const headers = {
+    Authorization: userToken
+  };
 
-        if (contentType && contentType !== '') {
-            headers['Content-Type'] = contentType;
-        }
+  if (contentType && contentType !== '') {
+    headers['Content-Type'] = contentType;
+  }
 
-        if (queryParams) {
-            url += this.queryParams(queryParams);
-        }
+  if (queryParams) {
+    fullUrl += queryParams(queryParams);
+  }
 
-        body = (body && contentType !== '') ? JSON.stringify(body) : body;
+  body = body && contentType !== '' ? JSON.stringify(body) : body;
 
-        return await fetch(url, {
-            method,
-            body,
-            headers
-        }).then(function (response) {
-            return response.json();
-        }).catch(function (err) {
-            console.log('Fetch Error :-S', err);
-        });
-    }
-
-    queryParams(params) {
-        return '?' + Object.keys(params)
-            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-            .join('&');
-    }
-}
+  try {
+    const response = await fetch(fullUrl, {
+      method,
+      body,
+      headers
+    });
+    return response.json();
+  } catch (err) {
+    console.log('Fetch Error :-S', err);
+  }
+};

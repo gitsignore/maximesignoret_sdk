@@ -1,44 +1,46 @@
-export default class HeaderManager {
-    constructor({ client, token }) {
-        this.client = client;
-        this.token = token
-    }
+import request from './Client';
 
-    getAll(queryParams = {}) {
-        return this.client.request({
-            path: '/headers',
-            method: 'GET',
-            queryParams: queryParams
-        });
-    };
+const HeaderManager = {
+  getAll: async (params = {}) =>
+    await request({
+      path: '/headers',
+      method: 'GET',
+      ...params
+    }),
 
-    getOne(id) {
-        return this.client.request({
-            path: `/headers/${id}`,
-            method: 'GET',
-        });
-    };
+  getOne: async (id, params = {}) =>
+    await request({
+      path: `/headers/${id}`,
+      method: 'GET',
+      ...params
+    }),
 
-    create(header) {
-        return this.client.request({
-            path: '/headers',
-            method: 'POST',
-            body: header,
-        }, this.token);
-    }
+  create: async (body, params = {}) =>
+    await request({
+      path: '/headers',
+      method: 'POST',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    update(id, header) {
-        return this.client.request({
-            path: `/headers/${id}`,
-            method: 'PUT',
-            body: header,
-        }, this.token);
-    }
+  update: async (id, body, params = {}) =>
+    await request({
+      path: `/headers/${id}`,
+      method: 'PUT',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    remove(id) {
-        return this.client.request({
-            path: `/headers/${id}`,
-            method: 'DELETE',
-        }, this.token);
-    }
-}
+  remove: async (id, params = {}) =>
+    await request({
+      path: `/headers/${id}`,
+      method: 'DELETE',
+      ...params
+    })
+};
+
+export default HeaderManager;

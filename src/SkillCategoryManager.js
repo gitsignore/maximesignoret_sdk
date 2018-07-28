@@ -1,44 +1,46 @@
-export default class SkillCategoryManager {
-    constructor({ client, token }) {
-        this.client = client;
-        this.token = token
-    }
+import request from './Client';
 
-    getAll(queryParams = {}) {
-        return this.client.request({
-            path: '/skill-categories',
-            method: 'GET',
-            queryParams: queryParams
-        });
-    };
+const SkillCategoryManager = {
+  getAll: async (params = {}) =>
+    await request({
+      path: '/skill-categories',
+      method: 'GET',
+      ...params
+    }),
 
-    getOne(id) {
-        return this.client.request({
-            path: `/skill-categories/${id}`,
-            method: 'GET',
-        });
-    };
+  getOne: async (id, params = {}) =>
+    await request({
+      path: `/skill-categories/${id}`,
+      method: 'GET',
+      ...params
+    }),
 
-    create(skillCategory) {
-        return this.client.request({
-            path: '/skill-categories',
-            method: 'POST',
-            body: skillCategory,
-        }, this.token);
-    }
+  create: async (body, params = {}) =>
+    await request({
+      path: '/skill-categories',
+      method: 'POST',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    update(id, skillCategory) {
-        return this.client.request({
-            path: `/skill-categories/${id}`,
-            method: 'PUT',
-            body: skillCategory,
-        }, this.token);
-    }
+  update: async (id, body, params = {}) =>
+    await request({
+      path: `/skill-categories/${id}`,
+      method: 'PUT',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    remove(id) {
-        return this.client.request({
-            path: `/skill-categories/${id}`,
-            method: 'DELETE',
-        }, this.token);
-    }
-}
+  remove: async (id, params = {}) =>
+    await request({
+      path: `/skill-categories/${id}`,
+      method: 'DELETE',
+      ...params
+    })
+};
+
+export default SkillCategoryManager;

@@ -1,44 +1,46 @@
-export default class ExperienceManager {
-    constructor({ client, token }) {
-        this.client = client;
-        this.token = token
-    }
+import request from './Client';
 
-    getAll(queryParams = {}) {
-        return this.client.request({
-            path: '/experiences',
-            method: 'GET',
-            queryParams: queryParams
-        });
-    };
+const ExperienceManager = {
+  getAll: async (params = {}) =>
+    await request({
+      path: '/experiences',
+      method: 'GET',
+      ...params
+    }),
 
-    getOne(id) {
-        return this.client.request({
-            path: `/experiences/${id}`,
-            method: 'GET',
-        });
-    };
+  getOne: async (id, params = {}) =>
+    await request({
+      path: `/experiences/${id}`,
+      method: 'GET',
+      ...params
+    }),
 
-    create(experience) {
-        return this.client.request({
-            path: '/experiences',
-            method: 'POST',
-            body: experience,
-        }, this.token);
-    }
+  create: async (body, params = {}) =>
+    await request({
+      path: '/experiences',
+      method: 'POST',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    update(id, experience) {
-        return this.client.request({
-            path: `/experiences/${id}`,
-            method: 'PUT',
-            body: experience,
-        }, this.token);
-    }
+  update: async (id, body, params = {}) =>
+    await request({
+      path: `/experiences/${id}`,
+      method: 'PUT',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    remove(id) {
-        return this.client.request({
-            path: `/experiences/${id}`,
-            method: 'DELETE',
-        }, this.token);
-    }
-}
+  remove: async (id, params = {}) =>
+    await request({
+      path: `/experiences/${id}`,
+      method: 'DELETE',
+      ...params
+    })
+};
+
+export default ExperienceManager;

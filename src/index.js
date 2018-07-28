@@ -23,5 +23,5 @@ export {
   SessionManager,
   SkillManager,
   SkillCategoryManager,
-  ResumeManager,
+  ResumeManager
 };

@@ -1,44 +1,46 @@
-export default class PortfolioManager {
-    constructor({ client, token }) {
-        this.client = client;
-        this.token = token
-    }
+import request from './Client';
 
-    getAll(queryParams = {}) {
-        return this.client.request({
-            path: '/portfolios',
-            method: 'GET',
-            queryParams: queryParams
-        });
-    };
+const PortfolioManager = {
+  getAll: async (params = {}) =>
+    await request({
+      path: '/portfolios',
+      method: 'GET',
+      ...params
+    }),
 
-    getOne(id) {
-        return this.client.request({
-            path: `/portfolios/${id}`,
-            method: 'GET',
-        });
-    };
+  getOne: async (id, params = {}) =>
+    await request({
+      path: `/portfolios/${id}`,
+      method: 'GET',
+      ...params
+    }),
 
-    create(portfolio) {
-        return this.client.request({
-            path: '/portfolios',
-            method: 'POST',
-            body: portfolio,
-        }, this.token);
-    }
+  create: async (body, params = {}) =>
+    await request({
+      path: '/portfolios',
+      method: 'POST',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    update(id, portfolio) {
-        return this.client.request({
-            path: `/portfolios/${id}`,
-            method: 'PUT',
-            body: portfolio,
-        }, this.token);
-    }
+  update: async (id, body, params = {}) =>
+    await request({
+      path: `/portfolios/${id}`,
+      method: 'PUT',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    remove(id) {
-        return this.client.request({
-            path: `/portfolios/${id}`,
-            method: 'DELETE',
-        }, this.token);
-    }
-}
+  remove: async (id, params = {}) =>
+    await request({
+      path: `/portfolios/${id}`,
+      method: 'DELETE',
+      ...params
+    })
+};
+
+export default PortfolioManager;

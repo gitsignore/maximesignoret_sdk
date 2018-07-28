@@ -1,43 +1,46 @@
-export default class ImageManager {
-    constructor({ client, token }) {
-        this.client = client;
-        this.token = token
-    }
+import request from './Client';
 
-    getAll() {
-        return this.client.request({
-            path: '/images',
-            method: 'GET',
-        });
-    };
+const ImageManager = {
+  getAll: async (params = {}) =>
+    await request({
+      path: '/images',
+      method: 'GET',
+      ...params
+    }),
 
-    getOne(id) {
-        return this.client.request({
-            path: `/images/${id}`,
-            method: 'GET',
-        });
-    };
+  getOne: async (id, params = {}) =>
+    await request({
+      path: `/images/${id}`,
+      method: 'GET',
+      ...params
+    }),
 
-    create(image) {
-        return this.client.request({
-            path: '/images',
-            method: 'POST',
-            body: image,
-        }, this.token, '');
-    }
+  create: async (body, params = {}) =>
+    await request({
+      path: '/images',
+      method: 'POST',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    update(id, image) {
-        return this.client.request({
-            path: `/images/${id}`,
-            method: 'PUT',
-            body: image,
-        }, this.token, '');
-    }
+  update: async (id, body, params = {}) =>
+    await request({
+      path: `/images/${id}`,
+      method: 'PUT',
+      body: {
+        ...body
+      },
+      ...params
+    }),
 
-    remove(id) {
-        return this.client.request({
-            path: `/images/${id}`,
-            method: 'DELETE',
-        }, this.token);
-    }
-}
+  remove: async (id, params = {}) =>
+    await request({
+      path: `/images/${id}`,
+      method: 'DELETE',
+      ...params
+    })
+};
+
+export default ImageManager;

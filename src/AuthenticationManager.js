@@ -1,26 +1,23 @@
-export default class AuthenticationManager {
-    constructor({ client }) {
-        this.client = client;
-    }
+import request from './Client';
 
-    login(email, password) {
-        return this.client.request({
-            path: '/auth/login',
-            method: 'POST',
-            body: {email: email, password: password},
-        });
-    };
+const AuthenticationManager = {
+  login: async (body, params = {}) =>
+    await request({
+      path: '/auth/login',
+      method: 'POST',
+      body: { ...body },
+      ...params
+    }),
 
-    register(firstName, lastName, email, password) {
-        return this.client.request({
-            path: '/auth/register',
-            method: 'POST',
-            body: {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: password
-            },
-        });
-    }
-}
+  register: async (body, params = {}) =>
+    await request({
+      path: '/auth/register',
+      method: 'POST',
+      body: {
+        ...body
+      },
+      ...params
+    })
+};
+
+export default AuthenticationManager;
