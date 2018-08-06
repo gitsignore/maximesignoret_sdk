@@ -5,7 +5,7 @@ const queryParams = params =>
     .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
     .join('&')}`;
 
-export default async ({
+const request = async ({
   url,
   port,
   entrypoint,
@@ -42,3 +42,41 @@ export default async ({
     console.log('Fetch Error :-S', err);
   }
 };
+
+const Client = {
+  GET: async (path = '', params = {}) =>
+    await request({
+      path: path,
+      method: 'GET',
+      ...params
+    }),
+
+  POST: async (path = '', body = {}, params = {}) =>
+    await request({
+      path: path,
+      method: 'POST',
+      body: {
+        ...body
+      },
+      ...params
+    }),
+
+  PUT: async (path = '', body = {}, params = {}) =>
+    await request({
+      path: path,
+      method: 'PUT',
+      body: {
+        ...body
+      },
+      ...params
+    }),
+
+  DELETE: async (path = '', params = {}) =>
+    await request({
+      path: path,
+      method: 'DELETE',
+      ...params
+    })
+};
+
+export default Client;
